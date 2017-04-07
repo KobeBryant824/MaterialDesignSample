@@ -1,0 +1,173 @@
+package com.cxh.materialdesignsample.fragment;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.cxh.materialdesignsample.R;
+import com.cxh.materialdesignsample.activity.LoginActivity;
+import com.cxh.materialdesignsample.activity.MainActivity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by Hai (haigod7@gmail.com) on 2017/3/31 15:11.
+ */
+public class FirstFragment extends Fragment{
+
+    private Toolbar mToolbar;
+    private FloatingActionButton fab;
+    private View mView;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Fragment多次replace会出现空白
+        if (mView != null) {
+            ViewGroup parent = (ViewGroup) mView.getParent();
+            if (parent != null) {
+                parent.removeView(mView);
+            }
+            return mView;
+        }
+
+        mView = inflater.inflate(R.layout.fragment_frist, container, false);
+        return mView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        mToolbar.setTitle("首页");
+        ((MainActivity) getActivity()).initDrawer(mToolbar);
+        initTabLayout(view);
+        inflateMenu();
+        initSearchView();
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(v, "前往登录", Snackbar.LENGTH_LONG).setAction("确定", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getContext(), LoginActivity.class));
+//                        getActivity().finish();
+                    }
+                }).show();
+            }
+        });
+    }
+
+    private void initTabLayout(View view) {
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewPager);
+        setupViewPager(viewPager);
+        viewPager.setOffscreenPageLimit(viewPager.getAdapter().getCount());
+        tabLayout.setupWithViewPager(viewPager);
+        //tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);        //适合很多tab
+//        tabLayout.setTabMode(TabLayout.MODE_FIXED);      //tab均分,适合少的tab，默认
+        //tab均分,适合少的tab,TabLayout.GRAVITY_CENTER，会居中
+        //tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);// 铺满，默认
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
+        Fragment newfragment = new ContentFragment();
+        Bundle data = new Bundle();
+        data.putString("title", "科比门徒1");
+        newfragment.setArguments(data);
+        adapter.addFrag(newfragment, "科比门徒1");
+
+        newfragment = new ContentFragment();
+        data = new Bundle();
+        data.putString("title", "科比门徒2");
+        newfragment.setArguments(data);
+        adapter.addFrag(newfragment, "科比门徒2");
+
+        newfragment = new ContentFragment();
+        data = new Bundle();
+        data.putString("title", "科比门徒3");
+        newfragment.setArguments(data);
+        adapter.addFrag(newfragment, "科比门徒3");
+
+        viewPager.setAdapter(adapter);
+    }
+
+    private void inflateMenu() {
+        mToolbar.inflateMenu(R.menu.menu_frist);
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_about:
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/KobeBryant824"));
+                        break;
+                }
+                return true;
+            }
+        });
+    }
+
+
+    private void initSearchView() {
+        final SearchView searchView = (SearchView) mToolbar.getMenu().findItem(R.id.menu_search).getActionView();
+        searchView.setQueryHint("搜索…");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(getActivity(), query,Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFrag(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
+}

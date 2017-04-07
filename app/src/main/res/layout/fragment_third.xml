@@ -1,0 +1,116 @@
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/thirdLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@drawable/divider"
+        android:showDividers="middle"
+        android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <TextView
+            android:id="@+id/bottomNavigation"
+            style="@style/CommonText"
+            android:layout_height="45dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:text="Bottom navigation"/>
+
+    <TextView
+            android:id="@+id/snackbars"
+            style="@style/CommonText"
+            android:layout_height="45dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:text="Snackbars"/>
+
+    <TextView
+            android:id="@+id/bottomSheetDialog"
+            style="@style/CommonText"
+            android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:text="BottomSheetDialog"/>
+
+    <TextView
+            android:id="@+id/dialogs"
+            style="@style/CommonText"
+            android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:text="Dialogs"/>
+
+
+    <LinearLayout
+            android:id="@+id/switchCompatLayout"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="?android:attr/selectableItemBackground">
+
+        <TextView
+                style="@style/CommonText"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SwitchCompat"/>
+
+        <android.support.v7.widget.SwitchCompat
+                android:id="@+id/switchCompat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/checkboxLayout"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="?android:attr/selectableItemBackground">
+
+        <TextView
+                style="@style/CommonText"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Checkbox"/>
+
+        <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:id="@+id/radiobuttonLayout"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="?android:attr/selectableItemBackground">
+
+        <TextView
+                style="@style/CommonText"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Radio button"/>
+
+        <RadioButton
+                android:id="@+id/radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="?android:attr/colorBackground">
+
+        <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+</LinearLayout>
