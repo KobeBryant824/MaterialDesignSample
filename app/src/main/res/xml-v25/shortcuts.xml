@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+            android:enabled="true"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:shortcutId="shortcut_home"
+            android:shortcutShortLabel="@string/shortcut_home"
+            android:shortcutLongLabel="@string/shortcut_home">
+
+        <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.cxh.materialdesignsample"
+                android:targetClass="com.cxh.materialdesignsample.activity.MainActivity"/>
+
+        <categories android:name="android.shortcut.conversation"/>
+
+    </shortcut>
+
+    <shortcut
+            android:enabled="true"
+            android:icon="@drawable/ic_account_box_black_24dp"
+            android:shortcutId="shortcut_login"
+            android:shortcutShortLabel="@string/shortcut_login"
+            android:shortcutLongLabel="@string/shortcut_login">
+
+        <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.cxh.materialdesignsample"
+                android:targetClass="com.cxh.materialdesignsample.activity.LoginActivity"/>
+
+        <categories android:name="android.shortcut.conversation"/>
+
+    </shortcut>
+
+    <shortcut
+            android:enabled="true"
+            android:icon="@drawable/ic_details_black_24dp"
+            android:shortcutId="shortcut_detail"
+            android:shortcutShortLabel="@string/shortcut_detail"
+            android:shortcutLongLabel="@string/shortcut_detail">
+
+        <intent
+                android:action="ilovekobebryant"
+                android:targetPackage="com.cxh.materialdesignsample"
+                android:targetClass="com.cxh.materialdesignsample.activity.DetailActivity"/>
+
+        <categories android:name="android.shortcut.conversation"/>
+
+    </shortcut>
+
+</Shortcuts>

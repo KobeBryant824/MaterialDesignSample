@@ -6,7 +6,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.cxh.materialdesignsample.BaseActivity;
 import com.cxh.materialdesignsample.R;
 
 public class BottomNavigationActivity extends BaseActivity {

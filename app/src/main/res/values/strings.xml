@@ -14,6 +14,11 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="login">登录</string>
 
+
+    <string name="shortcut_home">首页</string>
+    <string name="shortcut_login">登录</string>
+    <string name="shortcut_detail">详情</string>
+
     <string name="show_text">请不要在你拿工资的地方玩手机
 
 　　当一个顾客，进店时看到店里的员工低头玩手机，会有什么感觉？

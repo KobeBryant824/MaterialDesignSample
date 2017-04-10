@@ -11,15 +11,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
-import android.transition.Slide;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.cxh.materialdesignsample.AppConstants;
-import com.cxh.materialdesignsample.BaseActivity;
 import com.cxh.materialdesignsample.R;
 import com.cxh.materialdesignsample.fragment.FirstFragment;
 import com.cxh.materialdesignsample.fragment.SecondFragment;

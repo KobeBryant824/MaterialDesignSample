@@ -13,10 +13,10 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.cxh.materialdesignsample.AppConstants;
-import com.cxh.materialdesignsample.BaseActivity;
 import com.cxh.materialdesignsample.R;
 
 public class DetailActivity extends BaseActivity {
+    private static final String ACTION_CODE = "ilovekobebryant";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,11 @@ public class DetailActivity extends BaseActivity {
 
             }
         });
+
+        String action = getIntent().getAction();
+        if (action != null && action.equals(ACTION_CODE)) {
+            Snackbar.make(fab, action, Snackbar.LENGTH_SHORT).show();
+        }
     }
 
     /**
