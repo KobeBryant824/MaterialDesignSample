@@ -27,6 +27,7 @@
 - DayNight 白天黑夜换肤
 - ActivityOptionsCompat 共享元素
 - Transition 页面进入退出动画
+- Percent 百分比布局
 
 
 ## Thanks ##

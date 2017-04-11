@@ -21,6 +21,7 @@ import com.cxh.materialdesignsample.fragment.HomeFragment;
 import com.cxh.materialdesignsample.fragment.OtherWidgetFragment;
 import com.cxh.materialdesignsample.fragment.BehaviorFragment;
 import com.cxh.materialdesignsample.fragment.PaletteFragment;
+import com.cxh.materialdesignsample.fragment.PercentFragment;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ActionBarDrawerToggle mDrawerToggle;
@@ -130,6 +131,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
             recreate();
+        } else if (id == R.id.nav_percent){
+            switchContent(new PercentFragment());
         }
         return true;
     }
