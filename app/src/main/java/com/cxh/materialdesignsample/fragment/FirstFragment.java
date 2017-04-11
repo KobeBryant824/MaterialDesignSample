@@ -128,15 +128,19 @@ public class FirstFragment extends Fragment{
     private void initSearchView() {
         final SearchView searchView = (SearchView) mToolbar.getMenu().findItem(R.id.menu_search).getActionView();
         searchView.setQueryHint("搜索…");
+//        searchView.setIconifiedByDefault(false);// 默认让他展开
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Toast.makeText(getActivity(), query,Toast.LENGTH_SHORT).show();
+//                searchView.setIconifiedByDefault(true);
                 return false;
             }
 
+            // 当搜索内容改变时触发该方法
             @Override
             public boolean onQueryTextChange(String s) {
+                // 查询服务器，展示列表
                 return false;
             }
         });

@@ -19,6 +19,12 @@
     <string name="shortcut_login">登录</string>
     <string name="shortcut_detail">详情</string>
 
+
+    <string name="scale_down_show_behavior">com.cxh.materialdesignsample.behavior.ScaleDownShowBehavior</string>
+    <string name="scale_up_show_behavior">com.cxh.materialdesignsample.behavior.ScaleUpShowBehavior</string>
+    <string name="swipe_dismiss_behavior">android.support.design.widget.SwipeDismissBehavior</string>
+    <string name="define_behavior">com.cxh.materialdesignsample.behavior.DefineBehavior</string>
+
     <string name="show_text">请不要在你拿工资的地方玩手机
 
 　　当一个顾客，进店时看到店里的员工低头玩手机，会有什么感觉？

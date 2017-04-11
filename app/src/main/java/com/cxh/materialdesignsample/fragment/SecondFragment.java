@@ -19,7 +19,6 @@ import android.widget.RadioButton;
 import android.widget.SeekBar;
 
 import com.cxh.materialdesignsample.R;
-import com.cxh.materialdesignsample.activity.BottomNavigationActivity;
 import com.cxh.materialdesignsample.activity.BottomSheetDialogView;
 import com.cxh.materialdesignsample.activity.MainActivity;
 
@@ -54,7 +53,7 @@ public class SecondFragment extends Fragment {
         view.findViewById(R.id.bottomNavigation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), BottomNavigationActivity.class));
+//                startActivity(new Intent(getContext(), BottomNavigationActivity.class));
             }
         });
 

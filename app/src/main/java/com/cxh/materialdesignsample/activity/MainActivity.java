@@ -19,6 +19,7 @@ import com.cxh.materialdesignsample.AppConstants;
 import com.cxh.materialdesignsample.R;
 import com.cxh.materialdesignsample.fragment.FirstFragment;
 import com.cxh.materialdesignsample.fragment.SecondFragment;
+import com.cxh.materialdesignsample.fragment.ThidrFragment;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ActionBarDrawerToggle mDrawerToggle;
@@ -130,6 +131,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             recreate();
 
         } else if (id == R.id.nav_manage) {
+            switchContent(new ThidrFragment());
 
         } else if (id == R.id.nav_share) {
 
