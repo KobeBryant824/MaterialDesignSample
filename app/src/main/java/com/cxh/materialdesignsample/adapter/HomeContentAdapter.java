@@ -10,17 +10,17 @@ import com.cxh.materialdesignsample.activity.DetailActivity;
 /**
  * Created by Hai (haigod7@gmail.com) on 2017/4/6 16:34.
  */
-public class DataAdapter extends BaseAdapter<String> {
+public class HomeContentAdapter extends BaseAdapter<String> {
     private Activity mActivity;
 
-    public DataAdapter(Activity activity) {
+    public HomeContentAdapter(Activity activity) {
         super(activity);
         this.mActivity = activity;
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.recyclerview_item;
+        return R.layout.list_item_home_content;
     }
 
     @Override

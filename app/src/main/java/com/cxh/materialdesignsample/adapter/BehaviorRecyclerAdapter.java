@@ -33,11 +33,11 @@ import java.util.List;
  *
  * @author Yan Zhenjie.
  */
-public class ListRecyclerAdapter extends Adapter<ListRecyclerAdapter.DefineViewHolder> {
+public class BehaviorRecyclerAdapter extends Adapter<BehaviorRecyclerAdapter.DefineViewHolder> {
 
     private List<String> list;
 
-    public ListRecyclerAdapter(List<String> list) {
+    public BehaviorRecyclerAdapter(List<String> list) {
         this.list = list;
     }
 
@@ -54,7 +54,7 @@ public class ListRecyclerAdapter extends Adapter<ListRecyclerAdapter.DefineViewH
     @Override
     public DefineViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item, parent, false);
+        View view = layoutInflater.inflate(R.layout.list_item_behavior, parent, false);
         return new DefineViewHolder(view);
     }
 

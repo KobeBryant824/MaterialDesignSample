@@ -46,7 +46,7 @@ public class BottomSheetDialogView {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            View view = inflater.inflate(R.layout.list_item, null);
+            View view = inflater.inflate(R.layout.list_item_bottom_sheet, null);
             return new ViewHolder(view);
         }
 

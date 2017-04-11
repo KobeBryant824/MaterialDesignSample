@@ -17,9 +17,10 @@ import android.view.View;
 
 import com.cxh.materialdesignsample.AppConstants;
 import com.cxh.materialdesignsample.R;
-import com.cxh.materialdesignsample.fragment.FirstFragment;
-import com.cxh.materialdesignsample.fragment.SecondFragment;
-import com.cxh.materialdesignsample.fragment.ThidrFragment;
+import com.cxh.materialdesignsample.fragment.HomeFragment;
+import com.cxh.materialdesignsample.fragment.OtherWidgetFragment;
+import com.cxh.materialdesignsample.fragment.BehaviorFragment;
+import com.cxh.materialdesignsample.fragment.PaletteFragment;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private ActionBarDrawerToggle mDrawerToggle;
@@ -38,7 +39,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        switchContent(new FirstFragment());
+        switchContent(new HomeFragment());
     }
 
     private void setupWindowAnimations() {
@@ -90,12 +91,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -107,16 +103,21 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         mDrawerLayout.closeDrawer(GravityCompat.START);
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            switchContent(new FirstFragment());
+            switchContent(new HomeFragment());
 
-        } else if (id == R.id.nav_gallery) {
-            switchContent(new SecondFragment());
+        } else if (id == R.id.nav_other_widget) {
+            switchContent(new OtherWidgetFragment());
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_palette) {
+            switchContent(new PaletteFragment());
+
+        } else if (id == R.id.nav_behavior) {
+            switchContent(new BehaviorFragment());
+
+        } else if (id == R.id.nav_skin) {
             SharedPreferences sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
             SharedPreferences.Editor edit = sharedPreferences.edit();
 
@@ -129,16 +130,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
             recreate();
-
-        } else if (id == R.id.nav_manage) {
-            switchContent(new ThidrFragment());
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
-
         return true;
     }
 

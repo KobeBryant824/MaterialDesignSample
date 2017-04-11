@@ -28,7 +28,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.cxh.materialdesignsample.R;
-import com.cxh.materialdesignsample.adapter.ListRecyclerAdapter;
+import com.cxh.materialdesignsample.adapter.BehaviorRecyclerAdapter;
 import com.cxh.materialdesignsample.behavior.ScaleDownShowBehavior;
 
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class ZhihuActivity extends AppCompatActivity {
         linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setSmoothScrollbarEnabled(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-        ListRecyclerAdapter adapter = new ListRecyclerAdapter(list);
+        BehaviorRecyclerAdapter adapter = new BehaviorRecyclerAdapter(list);
         recyclerView.setAdapter(adapter);
 
         FAB = (FloatingActionButton) findViewById(R.id.fab);

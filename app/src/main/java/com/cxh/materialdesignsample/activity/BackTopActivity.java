@@ -26,7 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.cxh.materialdesignsample.R;
-import com.cxh.materialdesignsample.adapter.ListRecyclerAdapter;
+import com.cxh.materialdesignsample.adapter.BehaviorRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +65,7 @@ public class BackTopActivity extends AppCompatActivity {
         linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setSmoothScrollbarEnabled(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-        ListRecyclerAdapter adapter = new ListRecyclerAdapter(list);
+        BehaviorRecyclerAdapter adapter = new BehaviorRecyclerAdapter(list);
         recyclerView.setAdapter(adapter);
 
         FAB = (FloatingActionButton) findViewById(R.id.fab);
@@ -80,14 +80,14 @@ public class BackTopActivity extends AppCompatActivity {
 
     private boolean isInitializeFAB = false;
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (!isInitializeFAB) {
-            isInitializeFAB = true;
-            hideFAB();
-        }
-    }
+//    @Override
+//    public void onWindowFocusChanged(boolean hasFocus) {
+//        super.onWindowFocusChanged(hasFocus);
+//        if (!isInitializeFAB) {
+//            isInitializeFAB = true;
+//            hideFAB();
+//        }
+//    }
 
     private void hideFAB() {
         FAB.postDelayed(new Runnable() {

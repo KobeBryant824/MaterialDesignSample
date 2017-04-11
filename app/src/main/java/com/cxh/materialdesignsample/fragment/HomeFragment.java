@@ -29,25 +29,14 @@ import java.util.List;
 /**
  * Created by Hai (haigod7@gmail.com) on 2017/3/31 15:11.
  */
-public class FirstFragment extends Fragment{
+public class HomeFragment extends Fragment{
 
     private Toolbar mToolbar;
     private FloatingActionButton fab;
-    private View mView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Fragment多次replace会出现空白
-        if (mView != null) {
-            ViewGroup parent = (ViewGroup) mView.getParent();
-            if (parent != null) {
-                parent.removeView(mView);
-            }
-            return mView;
-        }
-
-        mView = inflater.inflate(R.layout.fragment_frist, container, false);
-        return mView;
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @Override
@@ -88,19 +77,19 @@ public class FirstFragment extends Fragment{
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        Fragment newfragment = new ContentFragment();
+        Fragment newfragment = new HomeContentFragment();
         Bundle data = new Bundle();
         data.putString("title", "科比门徒1");
         newfragment.setArguments(data);
         adapter.addFrag(newfragment, "科比门徒1");
 
-        newfragment = new ContentFragment();
+        newfragment = new HomeContentFragment();
         data = new Bundle();
         data.putString("title", "科比门徒2");
         newfragment.setArguments(data);
         adapter.addFrag(newfragment, "科比门徒2");
 
-        newfragment = new ContentFragment();
+        newfragment = new HomeContentFragment();
         data = new Bundle();
         data.putString("title", "科比门徒3");
         newfragment.setArguments(data);

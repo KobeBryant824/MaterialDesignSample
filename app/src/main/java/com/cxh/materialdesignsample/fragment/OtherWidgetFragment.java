@@ -2,7 +2,6 @@ package com.cxh.materialdesignsample.fragment;
 
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
@@ -23,7 +22,7 @@ import com.cxh.materialdesignsample.activity.BottomSheetDialogView;
 import com.cxh.materialdesignsample.activity.MainActivity;
 
 
-public class SecondFragment extends Fragment {
+public class OtherWidgetFragment extends Fragment {
     private Toolbar mToolbar;
     private View thirdLayout;
     private SwitchCompat switchCompat;
@@ -34,7 +33,7 @@ public class SecondFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second, container, false);
+        return inflater.inflate(R.layout.fragment_other_widget, container, false);
     }
 
     @Override

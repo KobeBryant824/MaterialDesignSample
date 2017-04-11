@@ -46,25 +46,32 @@ public class ScaleUpShowBehavior extends FloatingActionButton.Behavior {
 
     @Override
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, FloatingActionButton child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
-//        System.out.println("onNestedScroll- dxConsumed:" + dxConsumed + "; dyConsumed: " + dyConsumed + "; dxUnconsumed: " + dxUnconsumed + "; dyUnconsumed: " + dyUnconsumed);
+        System.out.println("onNestedScroll- dxConsumed:" + dxConsumed + "; dyConsumed: " + dyConsumed + "; dxUnconsumed: " + dxUnconsumed + "; dyUnconsumed: " + dyUnconsumed);
 
-//        if (dyConsumed > 0 && dyUnconsumed == 0) {
-//            System.out.println("上滑中。。。");
-//        }
-//        if (dyConsumed == 0 && dyUnconsumed > 0) {
-//            System.out.println("到边界了还在上滑。。。");
-//        }
-//        if (dyConsumed < 0 && dyUnconsumed == 0) {
-//            System.out.println("下滑中。。。");
-//        }
-//        if (dyConsumed == 0 && dyUnconsumed < 0) {
-//            System.out.println("到边界了，还在下滑。。。");
-//        }
+        if (dyConsumed > 0 && dyUnconsumed == 0) {
+            System.out.println("上滑中。。。");
+        }
+        if (dyConsumed == 0 && dyUnconsumed > 0) {
+            System.out.println("到边界了还在上滑。。。");
+        }
+        if (dyConsumed < 0 && dyUnconsumed == 0) {
+            System.out.println("下滑中。。。");
+        }
+        if (dyConsumed == 0 && dyUnconsumed < 0) {
+            System.out.println("到边界了，还在下滑。。。");
+        }
 
         if (((dyConsumed > 0 && dyUnconsumed == 0) || (dyConsumed == 0 && dyUnconsumed > 0)) && child.getVisibility() != View.VISIBLE) {// 显示
+//            child.show();
             BasicBehavior.scaleShow(child, null);
         } else if (((dyConsumed < 0 && dyUnconsumed == 0) || (dyConsumed == 0 && dyUnconsumed < 0)) && child.getVisibility() != View.GONE && listenerAnimatorEndBuild.isFinish()) {
+            //在compile 'com.android.support:design:25.2.0'中，如果给FloatActionButton设置为gone后，onNestedScroll方法将不会回调，
+            //将所有View.setVisibility(View.GONE)==》View.setVisibility(View.INVISIBLE);即可
+//            child.hide();
+//            child.setVisibility(View.INVISIBLE);
             BasicBehavior.scaleHide(child, listenerAnimatorEndBuild.build());
+
         }
     }
+
 }

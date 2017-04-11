@@ -29,7 +29,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.cxh.materialdesignsample.R;
-import com.cxh.materialdesignsample.adapter.ListRecyclerAdapter;
+import com.cxh.materialdesignsample.adapter.BehaviorRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +77,7 @@ public class BottomSheetBehaviorActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setSmoothScrollbarEnabled(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-        ListRecyclerAdapter adapter = new ListRecyclerAdapter(list);
+        BehaviorRecyclerAdapter adapter = new BehaviorRecyclerAdapter(list);
         recyclerView.setAdapter(adapter);
 
         setBehaviorCallback();

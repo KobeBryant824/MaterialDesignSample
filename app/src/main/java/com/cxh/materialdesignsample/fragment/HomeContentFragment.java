@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cxh.materialdesignsample.R;
-import com.cxh.materialdesignsample.adapter.DataAdapter;
+import com.cxh.materialdesignsample.adapter.HomeContentAdapter;
 import com.cxh.materialdesignsample.utils.NetworkUtils;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnNetWorkErrorListener;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ContentFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener{
+public class HomeContentFragment extends Fragment implements OnRefreshListener, OnLoadMoreListener{
     private static final int TOTAL_COUNTER = 5;//如果服务器没有返回总数据或者总页数，这里设置为最大值比如10000，什么时候没有数据了根据接口返回判断
     /**
      * 每一页展示多少条数据
@@ -37,7 +37,7 @@ public class ContentFragment extends Fragment implements OnRefreshListener, OnLo
     private int page = 1;
 
     private LRecyclerView mRecyclerView;
-    private DataAdapter mDataAdapter;
+    private HomeContentAdapter mDataAdapter;
     private LRecyclerViewAdapter mLRecyclerViewAdapter;
 
     @Override
@@ -64,7 +64,7 @@ public class ContentFragment extends Fragment implements OnRefreshListener, OnLo
         //设置底部加载文字提示
         mRecyclerView.setFooterViewHint("拼命加载中", "已经全部为你呈现了", "网络不给力啊，点击再试一次吧");
 
-        mDataAdapter = new DataAdapter(getActivity());
+        mDataAdapter = new HomeContentAdapter(getActivity());
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(mDataAdapter);
         mRecyclerView.setAdapter(mLRecyclerViewAdapter);
 
