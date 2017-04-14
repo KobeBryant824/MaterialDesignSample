@@ -1,9 +1,12 @@
 <resources>
 
+    <!--Theme.AppCompat.DayNigh 系统的白天黑夜模式 有一些黑色主题属性-->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>
