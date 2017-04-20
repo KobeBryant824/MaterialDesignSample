@@ -2,6 +2,7 @@ package com.cxh.materialdesignsample.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -9,7 +10,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 
 import com.cxh.materialdesignsample.AppConstants;
@@ -22,7 +27,12 @@ public class DetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        setEnterTransition();
+        setReturnTransition();
+
         setupToolbar("");
+
         String title = getIntent().getStringExtra("title");
 //        TextView titleTv = (TextView) findViewById(R.id.title_tv);
 //        titleTv.setText(title);
@@ -63,6 +73,32 @@ public class DetailActivity extends BaseActivity {
         String action = getIntent().getAction();
         if (action != null && action.equals(ACTION_CODE)) {
             Snackbar.make(fab, action, Snackbar.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * 当A startB时，使B中的View进入场景的transition
+     */
+    private void setEnterTransition() {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Fade visibility = new Fade();
+            // This view will not be affected by enter transition animation
+            visibility.excludeTarget(R.id.fab, true);
+            visibility.setDuration(500);
+            visibility.setInterpolator(new AccelerateDecelerateInterpolator());
+            getWindow().setEnterTransition(visibility);
+        }
+    }
+
+    /**
+     * 当B 返回A时，使B中的View退出场景的transition
+     */
+    private void setReturnTransition() {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Slide visibility = new Slide(Gravity.RIGHT);
+            visibility.setDuration(500);
+            visibility.setInterpolator(new AccelerateDecelerateInterpolator());
+            getWindow().setReturnTransition(visibility);
         }
     }
 

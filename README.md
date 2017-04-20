@@ -12,21 +12,21 @@
 - CoordinatorLayout.Behavior 使用
 - CollapsingToolbarLayout 可伸缩折叠的Toolbar
 - NestedScrollView 配合CoordinatorLayout使用
-
+- 
 - TabLayout 选项卡
-- Palette 调色板
+- RecyclerView ListView替代者
+- CardView 卡片布局
 
 - SearchView 搜索框
 - SwipeRefreshLayout 下拉刷新（demo没有用到）
 - TextInputLayout 强大带提示的MD风格的EditText
 
-- RecyclerView ListView替代者
-- CardView 卡片布局
-
 - Shortcut android7.1 3DTouch菜单
 - DayNight 白天黑夜换肤
 - ActivityOptionsCompat 共享元素
 - Transition 页面进入退出动画
+
+- Palette 调色板
 - Percent 百分比布局
 
 
