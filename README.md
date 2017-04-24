@@ -12,7 +12,7 @@
 - CoordinatorLayout.Behavior 使用
 - CollapsingToolbarLayout 可伸缩折叠的Toolbar
 - NestedScrollView 配合CoordinatorLayout使用
-- 
+
 - TabLayout 选项卡
 - RecyclerView ListView替代者
 - CardView 卡片布局
