@@ -2,8 +2,10 @@ package com.cxh.materialdesignsample.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,8 +19,13 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.cxh.materialdesignsample.AppConstants;
 import com.cxh.materialdesignsample.R;
+
+import static com.cxh.materialdesignsample.R.id.showImage;
+import static com.cxh.materialdesignsample.adapter.HomeContentAdapter.path1;
+import static com.cxh.materialdesignsample.adapter.HomeContentAdapter.path2;
 
 public class DetailActivity extends BaseActivity {
     private static final String ACTION_CODE = "ilovekobebryant";
@@ -33,31 +40,38 @@ public class DetailActivity extends BaseActivity {
 
         setupToolbar("");
 
+        // 自定义toolbar里标题
         String title = getIntent().getStringExtra("title");
 //        TextView titleTv = (TextView) findViewById(R.id.title_tv);
 //        titleTv.setText(title);
 
-        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+
+        final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         // ToolBar的标题，当CollapsingToolbarLayout全屏没有折叠时，title显示的是大字体，在折叠的过程中，title不断变小到一定大小的效果。你可以调用setTitle(CharSequence)方法设置title。
         collapsingToolbar.setTitle(title);
 
+        ((AppBarLayout) findViewById(R.id.appbar)).addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+//                int height = appBarLayout.getHeight() - getSupportActionBar().getHeight() - ViewUtils.getStatusBarHeight(DetailActivity.this); // 状态栏透明
+                int height = appBarLayout.getHeight() - getSupportActionBar().getHeight();
+                int alpha = 255 * (0 - verticalOffset) / height;
+                collapsingToolbar.setExpandedTitleColor(Color.argb(0, 255, 255, 255));
+                collapsingToolbar.setCollapsedTitleTextColor(Color.argb(alpha, 255, 255, 255));
+            }
+        });
+
         int position = this.getIntent().getIntExtra("position", 0);
-        ImageView backdrop = (ImageView) findViewById(R.id.backdrop);
+        final ImageView backdrop = (ImageView) findViewById(R.id.backdrop);
         //设置过渡动画，或者XML android:transitionName=""
 //        ViewCompat.setTransitionName(titleTv, AppConstants.TRANSITION_TITLE);
         ViewCompat.setTransitionName(backdrop, AppConstants.TRANSITION_PIC);
 
         if (position % 2 == 0) {
-            backdrop.setBackgroundResource(R.drawable.ic_head);
-            // 居然不能加载网络图片
-//            Glide
-//                    .with(this)
-//                    .load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491395116513&di=086fb70e4d8f885a99d4d885ea764f22&imgtype=0&src=http%3A%2F%2Fimgmini.eastday.com%2Fmobile%2F20160426045203_a9988af49be1b2286e813a02b0361ab7_1.jpeg")
-//                    .centerCrop()
-//                    .crossFade()
-//                    .into(backdrop);
+            Glide.with(this).load(path1).crossFade().into(backdrop);
+
         } else {
-            backdrop.setBackgroundResource(R.drawable.ic_kobe);
+            Glide.with(this).load(path2).crossFade().into(backdrop);
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
