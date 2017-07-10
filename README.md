@@ -23,6 +23,7 @@
 
 - Shortcut android7.1 3DTouch 菜单
 - DayNight 白天黑夜换肤
+- WindowTranslucentStatus 沉浸式状态栏
 - ActivityOptionsCompat 共享元素
 - Transition 页面进入退出动画
 
@@ -36,4 +37,4 @@
 
 
 ## License
-   Apache-2.0
+- [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0)
