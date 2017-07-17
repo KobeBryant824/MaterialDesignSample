@@ -18,17 +18,18 @@
 - CardView 卡片布局
 
 - SearchView 搜索框
-- SwipeRefreshLayout 下拉刷新（demo没有用到）
+- SwipeRefreshLayout 下拉刷新
 - TextInputLayout 强大带提示的 MD 风格的 EditText
 
 - Shortcut android7.1 3DTouch 菜单
 - DayNight 白天黑夜换肤
-- WindowTranslucentStatus 沉浸式状态栏
 - ActivityOptionsCompat 共享元素
 - Transition 页面进入退出动画
 
 - Palette 调色板
 - Percent 百分比布局
+
+- FlexboxLayout 流式布局
 
 
 ## Thanks ##

@@ -2,6 +2,7 @@ package com.cxh.materialdesignsample.fragment;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
@@ -16,15 +17,18 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.cxh.materialdesignsample.R;
+import com.cxh.materialdesignsample.activity.BottomNavigationActivity;
 import com.cxh.materialdesignsample.activity.BottomSheetDialogView;
+import com.cxh.materialdesignsample.activity.FlexboxLayoutActivity;
 import com.cxh.materialdesignsample.activity.MainActivity;
 
 
 public class OtherWidgetFragment extends Fragment {
     private Toolbar mToolbar;
-    private View thirdLayout;
+    private View parentLayout;
     private SwitchCompat switchCompat;
     private CheckBox checkBox;
     private RadioButton radiobutton;
@@ -32,7 +36,7 @@ public class OtherWidgetFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout_constaraint for this fragment
         return inflater.inflate(R.layout.fragment_other_widget, container, false);
     }
 
@@ -43,7 +47,7 @@ public class OtherWidgetFragment extends Fragment {
         mToolbar.setTitle("其他组件");
         ((MainActivity) getActivity()).initDrawer(mToolbar);
 
-        thirdLayout = view.findViewById(R.id.thirdLayout);
+        parentLayout = view.findViewById(R.id.parentLayout);
         switchCompat = (SwitchCompat) view.findViewById(R.id.switchCompat);
         checkBox = (CheckBox) view.findViewById(R.id.checkbox);
         radiobutton = (RadioButton) view.findViewById(R.id.radiobutton);
@@ -52,14 +56,20 @@ public class OtherWidgetFragment extends Fragment {
         view.findViewById(R.id.bottomNavigation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(getContext(), BottomNavigationActivity.class));
+                startActivity(new Intent(getContext(), BottomNavigationActivity.class));
             }
         });
 
         view.findViewById(R.id.snackbars).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(thirdLayout, "Snackbar Test", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(parentLayout, "Snackbar Test", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(getContext(), "Hello", Toast.LENGTH_SHORT).show();
+                            }
+                        }).show();
             }
         });
 
@@ -99,10 +109,17 @@ public class OtherWidgetFragment extends Fragment {
             }
         });
 
+        view.findViewById(R.id.flexboxLayout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), FlexboxLayoutActivity.class));
+            }
+        });
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Snackbar.make(thirdLayout, "progress=" + progress, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(parentLayout, "progress=" + progress, Snackbar.LENGTH_SHORT).show();
             }
 
             @Override

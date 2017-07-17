@@ -1,28 +1,25 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- Base application theme. -->
     <!--DarkActionBar have actionbar,but only toolbar work in with DrawerLayout-->
-    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--API5.0 TranslucentStatus -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowIsTranslucent">true</item> //去掉启动白屏、黑屏，但是会增加启动时间
+        <!--去掉启动白屏、黑屏，但是会增加启动时间-->
+        <item name="android:windowIsTranslucent">true</item>
 
     </style>
-
-    <style name="AppTheme" parent="BaseAppTheme"/>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
-    <style name="AppTheme.TransparentStatusbar" parent="AppTheme">
-        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent</item>
-    </style>
+    <style name="AppTheme.TransStatusBar" parent="AppTheme"/>
 
     <style name="CommonText">
         <item name="android:layout_width">match_parent</item>

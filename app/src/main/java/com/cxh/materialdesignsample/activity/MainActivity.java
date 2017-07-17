@@ -1,11 +1,17 @@
 package com.cxh.materialdesignsample.activity;
 
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.RemoteInput;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,15 +25,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
-import com.cxh.materialdesignsample.AppConstants;
+import com.cxh.materialdesignsample.Constants;
 import com.cxh.materialdesignsample.R;
-import com.cxh.materialdesignsample.fragment.HomeFragment;
-import com.cxh.materialdesignsample.fragment.OtherWidgetFragment;
+import com.cxh.materialdesignsample.SendMsgService;
 import com.cxh.materialdesignsample.fragment.BehaviorFragment;
+import com.cxh.materialdesignsample.fragment.MainFragment;
+import com.cxh.materialdesignsample.fragment.OtherWidgetFragment;
 import com.cxh.materialdesignsample.fragment.PaletteFragment;
 import com.cxh.materialdesignsample.fragment.PercentFragment;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static final String RESULT_KEY = "remote_input";
+    public static final int NOTIFICATION_ID = 1000;
+
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
 
@@ -35,6 +46,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        StatusBarCompat.compat(this, Color.parseColor("#3F51B5"));
+//        StatusBarCompat.compat(this);
 
         setExitTransition();
         setReenterTransition();
@@ -47,7 +61,43 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        switchContent(new HomeFragment());
+        switchContent(new MainFragment());
+
+//        NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        Notification notification = buildNotification();
+//        nm.notify(NOTIFICATION_ID, notification);
+
+
+    }
+
+    private Notification buildNotification() {
+        RemoteInput remoteInput = new RemoteInput.Builder(RESULT_KEY)
+                .setLabel("回复这条消息")
+                .build();
+
+        // 创建pendingintent, 当发送时调用什么
+        Intent intent = new Intent(this, SendMsgService.class);
+        PendingIntent pi = PendingIntent.getService(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        // 创建快捷回复 Action
+        NotificationCompat.Action act = new NotificationCompat.Action.Builder(R.mipmap.ic_launcher, "回复", pi)
+                .addRemoteInput(remoteInput).build();
+
+        // 创建notification
+        // 使用设置优先级的方式创建悬浮通知，则会自动消失
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("请问是否需要信用卡?")
+                .setContentText("您好，我是XX银行的XX经理， 请问你需要办理信用卡吗？")
+                .setColor(Color.CYAN)
+                .setPriority(Notification.PRIORITY_MAX) // 设置优先级为Max，则为悬浮通知
+                .addAction(act) // 设置回复action
+                .setAutoCancel(true)
+                .setWhen(System.currentTimeMillis())
+                .setDefaults(Notification.DEFAULT_ALL) // 想要悬浮出来， 这里必须要设置
+                .setCategory(Notification.CATEGORY_MESSAGE);
+
+        return builder.build();
     }
 
     /**
@@ -123,14 +173,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         mDrawerLayout.closeDrawer(GravityCompat.START);
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            switchContent(new HomeFragment());
+            switchContent(new MainFragment());
 
         } else if (id == R.id.nav_other_widget) {
             switchContent(new OtherWidgetFragment());
@@ -145,8 +194,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             SharedPreferences sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
             SharedPreferences.Editor edit = sharedPreferences.edit();
 
-            boolean isNight = !sharedPreferences.getBoolean(AppConstants.ISNIGHT, false);
-            edit.putBoolean(AppConstants.ISNIGHT, isNight).commit();
+            boolean isNight = !sharedPreferences.getBoolean(Constants.ISNIGHT, false);
+            edit.putBoolean(Constants.ISNIGHT, isNight).commit();
 
             if (isNight)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);

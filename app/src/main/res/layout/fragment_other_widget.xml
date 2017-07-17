@@ -1,7 +1,7 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/thirdLayout"
+        android:id="@+id/parentLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@drawable/divider"
@@ -112,5 +112,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/flexboxLayout"
+        style="@style/CommonText"
+        android:layout_height="45dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:text="FlexboxLayout"/>
 
 </LinearLayout>

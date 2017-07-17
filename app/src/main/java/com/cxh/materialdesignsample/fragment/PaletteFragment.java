@@ -18,11 +18,12 @@ import android.view.Window;
 import com.cxh.materialdesignsample.R;
 import com.cxh.materialdesignsample.activity.MainActivity;
 import com.cxh.materialdesignsample.adapter.PaletteViewPagerAdapter;
+import com.socks.library.KLog;
 
 /**
  * Created by Hai (haigod7@gmail.com) on 2017/4/11 14:42.
  */
-public class PaletteFragment extends Fragment{
+public class PaletteFragment extends Fragment {
     private Toolbar toolbar;
     private TabLayout toolbar_tab;
     private ViewPager main_vp_container;
@@ -68,7 +69,8 @@ public class PaletteFragment extends Fragment{
     /**
      * 根据Palette提取的颜色，修改tab和toolbar以及状态栏的颜色
      */
-    private void changeTopBgColor(int position) {
+    private void changeTopBgColor(final int position) {
+
         // 用来提取颜色的Bitmap
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), PaletteContentFragment.getBackgroundBitmapPosition(position));
         // Palette的部分
@@ -83,8 +85,9 @@ public class PaletteFragment extends Fragment{
                 toolbar_tab.setSelectedTabIndicatorColor(colorBurn(vibrant.getRgb()));
                 toolbar.setBackgroundColor(vibrant.getRgb());
 
-                if (android.os.Build.VERSION.SDK_INT >= 21) {
+                if (android.os.Build.VERSION.SDK_INT >= 21 && getActivity() != null) {
                     Window window = getActivity().getWindow();
+                    //        <item name="android:windowTranslucentStatus">true</item> 注释主题的这行以下两句才有效
                     window.setStatusBarColor(colorBurn(vibrant.getRgb()));
                     window.setNavigationBarColor(colorBurn(vibrant.getRgb()));
                 }

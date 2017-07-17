@@ -20,12 +20,11 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.cxh.materialdesignsample.AppConstants;
+import com.cxh.materialdesignsample.Constants;
 import com.cxh.materialdesignsample.R;
 
-import static com.cxh.materialdesignsample.R.id.showImage;
-import static com.cxh.materialdesignsample.adapter.HomeContentAdapter.path1;
-import static com.cxh.materialdesignsample.adapter.HomeContentAdapter.path2;
+import static com.cxh.materialdesignsample.adapter.HomeAdapter.path1;
+import static com.cxh.materialdesignsample.adapter.HomeAdapter.path2;
 
 public class DetailActivity extends BaseActivity {
     private static final String ACTION_CODE = "ilovekobebryant";
@@ -34,6 +33,9 @@ public class DetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+//        StatusBarCompat.compat(this, Color.parseColor("#3F51B5"));
+//        StatusBarCompat.compat(this);
 
         setEnterTransition();
         setReturnTransition();
@@ -64,8 +66,8 @@ public class DetailActivity extends BaseActivity {
         int position = this.getIntent().getIntExtra("position", 0);
         final ImageView backdrop = (ImageView) findViewById(R.id.backdrop);
         //设置过渡动画，或者XML android:transitionName=""
-//        ViewCompat.setTransitionName(titleTv, AppConstants.TRANSITION_TITLE);
-        ViewCompat.setTransitionName(backdrop, AppConstants.TRANSITION_PIC);
+//        ViewCompat.setTransitionName(titleTv, Constants.TRANSITION_TITLE);
+        ViewCompat.setTransitionName(backdrop, Constants.TRANSITION_PIC);
 
         if (position % 2 == 0) {
             Glide.with(this).load(path1).crossFade().into(backdrop);
@@ -125,7 +127,7 @@ public class DetailActivity extends BaseActivity {
         intent.putExtra("title", title);
         intent.putExtra("position", position);
         ActivityOptionsCompat options = ActivityOptionsCompat
-                .makeSceneTransitionAnimation(activity, showImage, AppConstants.TRANSITION_PIC);
+                .makeSceneTransitionAnimation(activity, showImage, Constants.TRANSITION_PIC);
         ActivityCompat.startActivity(activity, intent, options.toBundle());
 
 
@@ -135,8 +137,8 @@ public class DetailActivity extends BaseActivity {
 //                intent.putExtra("title", title);
 //                intent.putExtra("position", position);
 //
-//                Pair<View, String> pair1 = new Pair<>((View)holder.title, AppConstants.TRANSITION_TITLE);
-//                Pair<View, String> pair2 = new Pair<>((View)holder.showImage, AppConstants.TRANSITION_PIC);
+//                Pair<View, String> pair1 = new Pair<>((View)holder.title, Constants.TRANSITION_TITLE);
+//                Pair<View, String> pair2 = new Pair<>((View)holder.showImage, Constants.TRANSITION_PIC);
 //                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity, pair1, pair2);
 //
 //                ActivityCompat.startActivity(mActivity, intent, activityOptionsCompat.toBundle());

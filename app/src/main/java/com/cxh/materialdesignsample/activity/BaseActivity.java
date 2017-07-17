@@ -1,6 +1,5 @@
 package com.cxh.materialdesignsample.activity;
 
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 

@@ -1,8 +1,8 @@
 <resources>
 
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="@style/BaseAppTheme">
-        <item name="android:windowTranslucentStatus">true</item> // 沉淀式状态栏,4.4有很多问题不考虑，换肤时没有这行，添加了4.4又有，所以换肤请忽略
+    <!--结合android:fitsSystemWindows="true"让其依附系统边框-->
+    <style name="AppTheme.TransStatusBar" parent="AppTheme">
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
+
 </resources>

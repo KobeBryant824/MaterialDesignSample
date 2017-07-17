@@ -1,166 +1,136 @@
 package com.cxh.materialdesignsample.fragment;
 
-import android.content.Intent;
-import android.net.Uri;
+
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.ImageView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cxh.materialdesignsample.R;
-import com.cxh.materialdesignsample.activity.LoginActivity;
-import com.cxh.materialdesignsample.activity.MainActivity;
+import com.cxh.materialdesignsample.activity.DetailActivity;
+import com.cxh.materialdesignsample.adapter.HomeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Hai (haigod7@gmail.com) on 2017/3/31 15:11.
- */
-public class HomeFragment extends Fragment{
 
-    private Toolbar mToolbar;
-    private FloatingActionButton fab;
+public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemClickListener {
+
+    private static final int TOTAL_COUNT = 12;
+    private static final int PAGE_COUNT = 5;
+
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private Handler mHandler;
+
+    private String mTitle;
+    private int mPage;
+    private boolean isErr;
+
+    private HomeAdapter mHomeAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_home_content, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        mToolbar.setTitle("首页");
-        ((MainActivity) getActivity()).initDrawer(mToolbar);
-        initTabLayout(view);
-        inflateMenu();
-        initSearchView();
-        fab.setOnClickListener(new View.OnClickListener() {
+        mHandler = new Handler();
+        mTitle = this.getArguments().getString("title");
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        mHomeAdapter = new HomeAdapter();
+        mHomeAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
+        mHomeAdapter.isFirstOnly(false);
+        mHomeAdapter.setOnLoadMoreListener(this, recyclerView);
+
+        recyclerView.setAdapter(mHomeAdapter);
+        mHomeAdapter.setOnItemClickListener(this);
+
+        mSwipeRefreshLayout.setRefreshing(true);
+        onRefresh();
+    }
+
+    @Override
+    public void onRefresh() {
+        mHomeAdapter.setEnableLoadMore(false);
+
+        mPage = 1;
+
+        mHandler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                Snackbar.make(v, "前往登录", Snackbar.LENGTH_LONG).setAction("确定", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(getContext(), LoginActivity.class));
-//                        getActivity().finish();
-                    }
-                }).show();
-            }
-        });
-    }
-
-    private void initTabLayout(View view) {
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewPager);
-        setupViewPager(viewPager);
-        viewPager.setOffscreenPageLimit(viewPager.getAdapter().getCount());
-        tabLayout.setupWithViewPager(viewPager);
-        //tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);        //适合很多tab
-//        tabLayout.setTabMode(TabLayout.MODE_FIXED);      //tab均分,适合少的tab，默认
-        //tab均分,适合少的tab,TabLayout.GRAVITY_CENTER，会居中
-        //tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);// 铺满，默认
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        Fragment newfragment = new HomeContentFragment();
-        Bundle data = new Bundle();
-        data.putString("title", "科比门徒1");
-        newfragment.setArguments(data);
-        adapter.addFrag(newfragment, "科比门徒1");
-
-        newfragment = new HomeContentFragment();
-        data = new Bundle();
-        data.putString("title", "科比门徒2");
-        newfragment.setArguments(data);
-        adapter.addFrag(newfragment, "科比门徒2");
-
-        newfragment = new HomeContentFragment();
-        data = new Bundle();
-        data.putString("title", "科比门徒3");
-        newfragment.setArguments(data);
-        adapter.addFrag(newfragment, "科比门徒3");
-
-        viewPager.setAdapter(adapter);
-    }
-
-    private void inflateMenu() {
-        mToolbar.inflateMenu(R.menu.menu_frist);
-        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.menu_about:
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/KobeBryant824"));
-                        break;
+            public void run() {
+                int start = PAGE_COUNT * (mPage - 1);
+                List<String> data = new ArrayList<>();
+                for (int i = start; i < mPage * PAGE_COUNT; i++) {
+                    data.add(mTitle + "," + getActivity().getString(R.string.app_name) + i);
                 }
-                return true;
+                mHomeAdapter.setNewData(data);
+                mSwipeRefreshLayout.setRefreshing(false);
+                mHomeAdapter.setEnableLoadMore(true);
             }
-        });
+        }, 1000);
     }
 
+    @Override
+    public void onLoadMoreRequested() {
+        mSwipeRefreshLayout.setEnabled(false);
 
-    private void initSearchView() {
-        final SearchView searchView = (SearchView) mToolbar.getMenu().findItem(R.id.menu_search).getActionView();
-        searchView.setQueryHint("搜索…");
-//        searchView.setIconifiedByDefault(false);// 默认让他展开
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(getActivity(), query,Toast.LENGTH_SHORT).show();
-//                searchView.setIconifiedByDefault(true);
-                return false;
-            }
+        int currentCount = mHomeAdapter.getData().size();
 
-            // 当搜索内容改变时触发该方法
-            @Override
-            public boolean onQueryTextChange(String s) {
-                // 查询服务器，展示列表
-                return false;
+        if (currentCount < PAGE_COUNT) {
+            mHomeAdapter.loadMoreEnd(true);
+        } else {
+            if (currentCount <= TOTAL_COUNT) {
+                if (isErr){
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mPage++;
+                            int start = PAGE_COUNT * (mPage - 1);
+                            List<String> data = new ArrayList<>();
+                            for (int i = start; i < mPage * PAGE_COUNT; i++) {
+                                data.add(mTitle + "," + getActivity().getString(R.string.app_name) + i);
+                            }
+                            mHomeAdapter.addData(data);
+                            mHomeAdapter.loadMoreComplete();
+                            mSwipeRefreshLayout.setEnabled(true);
+                        }
+                    }, 1000);
+                } else {
+                    isErr = true;
+                    mHomeAdapter.loadMoreFail();
+                    mSwipeRefreshLayout.setEnabled(true);
+                }
+            } else {
+                mHomeAdapter.loadMoreEnd(true);
+                mSwipeRefreshLayout.setEnabled(true);
             }
-        });
+        }
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
+    @Override
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        String item = ((String) adapter.getItem(position)).split(",")[0];
+        DetailActivity.startActivity(getActivity(), position, item, (ImageView) adapter.getViewByPosition(position, R.id.showImage));
+    }
 
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFrag(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mHandler.removeCallbacksAndMessages(null);
     }
 }
