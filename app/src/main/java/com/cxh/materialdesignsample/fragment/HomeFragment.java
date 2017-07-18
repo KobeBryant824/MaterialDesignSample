@@ -125,6 +125,8 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         String item = ((String) adapter.getItem(position)).split(",")[0];
+
+
         DetailActivity.startActivity(getActivity(), position, item, (ImageView) adapter.getViewByPosition(position, R.id.showImage));
     }
 

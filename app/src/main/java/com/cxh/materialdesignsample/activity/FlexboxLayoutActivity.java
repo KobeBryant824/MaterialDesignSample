@@ -48,9 +48,10 @@ public class FlexboxLayoutActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flexboxlayout);
-        setupToolbar("FlexboxLayout");
+        setTitle("FlexboxLayout");
+
+        super.onCreate(savedInstanceState);
 
         initView();
     }
@@ -62,7 +63,7 @@ public class FlexboxLayoutActivity extends BaseActivity {
         layoutManager.setFlexWrap(FlexWrap.WRAP);//控制单行和多行，以及副轴的方向
         layoutManager.setFlexDirection(FlexDirection.ROW);//子元素的排列方向，决定主轴和副轴的方向
         layoutManager.setAlignItems(AlignItems.STRETCH);//控制沿副轴对齐(单行起作用)
-        layoutManager.setJustifyContent(JustifyContent.FLEX_START);//控制沿主轴对齐
+        layoutManager.setJustifyContent(JustifyContent.CENTER);//控制沿主轴对齐
         mRecyclerView.setLayoutManager(layoutManager);
 
         CatAdapter catAdapter = new CatAdapter();

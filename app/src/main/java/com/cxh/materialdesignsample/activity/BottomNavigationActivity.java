@@ -35,9 +35,10 @@ public class BottomNavigationActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_navigation);
-        setupToolbar("BottomNavigation");
+        setTitle("BottomNavigation");
+
+        super.onCreate(savedInstanceState);
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

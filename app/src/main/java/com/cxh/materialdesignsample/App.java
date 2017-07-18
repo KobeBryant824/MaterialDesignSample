@@ -18,5 +18,7 @@ public class App extends Application {
             //不使用夜间模式
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+
+        registerActivityLifecycleCallbacks(new ActivityLifecycle());
     }
 }

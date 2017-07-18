@@ -18,10 +18,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.cxh.materialdesignsample.Constants;
 import com.cxh.materialdesignsample.R;
+import com.socks.library.KLog;
 
 import static com.cxh.materialdesignsample.adapter.HomeAdapter.path1;
 import static com.cxh.materialdesignsample.adapter.HomeAdapter.path2;
@@ -31,8 +33,9 @@ public class DetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        super.onCreate(savedInstanceState);
 
 //        StatusBarCompat.compat(this, Color.parseColor("#3F51B5"));
 //        StatusBarCompat.compat(this);
@@ -40,13 +43,8 @@ public class DetailActivity extends BaseActivity {
         setEnterTransition();
         setReturnTransition();
 
-        setupToolbar("");
-
         // 自定义toolbar里标题
         String title = getIntent().getStringExtra("title");
-//        TextView titleTv = (TextView) findViewById(R.id.title_tv);
-//        titleTv.setText(title);
-
 
         final CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         // ToolBar的标题，当CollapsingToolbarLayout全屏没有折叠时，title显示的是大字体，在折叠的过程中，title不断变小到一定大小的效果。你可以调用setTitle(CharSequence)方法设置title。
@@ -59,7 +57,8 @@ public class DetailActivity extends BaseActivity {
                 int height = appBarLayout.getHeight() - getSupportActionBar().getHeight();
                 int alpha = 255 * (0 - verticalOffset) / height;
                 collapsingToolbar.setExpandedTitleColor(Color.argb(0, 255, 255, 255));
-                collapsingToolbar.setCollapsedTitleTextColor(Color.argb(alpha, 255, 255, 255));
+                // 下面这句取决于 android:theme="@style/AppTheme.AppBarOverlay" 设置给哪个控件
+//                collapsingToolbar.setCollapsedTitleTextColor(Color.argb(alpha, 255, 255, 255));
             }
         });
 
