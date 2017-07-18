@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 
 import com.cxh.materialdesignsample.R;
@@ -25,6 +26,8 @@ import com.cxh.materialdesignsample.activity.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.socks.library.KLog.I;
 
 /**
  * Created by Hai (haigod7@gmail.com) on 2017/3/31 15:11.
@@ -99,7 +102,7 @@ public class MainFragment extends Fragment{
     }
 
     private void inflateMenu() {
-        mToolbar.inflateMenu(R.menu.menu_frist);
+        mToolbar.inflateMenu(R.menu.menu_home);
         mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -113,11 +116,11 @@ public class MainFragment extends Fragment{
         });
     }
 
-
     private void initSearchView() {
         final SearchView searchView = (SearchView) mToolbar.getMenu().findItem(R.id.menu_search).getActionView();
         searchView.setQueryHint("搜索…");
 //        searchView.setIconifiedByDefault(false);// 默认让他展开
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE); //搜索选项字段，默认是搜索，可以是：下一页、发送、完成等
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

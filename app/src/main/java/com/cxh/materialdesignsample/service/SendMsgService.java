@@ -1,4 +1,4 @@
-package com.cxh.materialdesignsample;
+package com.cxh.materialdesignsample.service;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -13,6 +13,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.RemoteInput;
 import android.util.Log;
 
+import com.cxh.materialdesignsample.R;
 import com.cxh.materialdesignsample.activity.MainActivity;
 
 

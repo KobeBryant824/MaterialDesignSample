@@ -4,7 +4,7 @@
         android:id="@+id/parentLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@drawable/divider"
+        android:divider="@drawable/shape_divider"
         android:showDividers="middle"
         android:orientation="vertical">
 
