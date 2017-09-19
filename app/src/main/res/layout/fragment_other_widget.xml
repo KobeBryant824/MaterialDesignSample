@@ -35,12 +35,14 @@
             android:id="@+id/bottomSheetDialog"
             style="@style/CommonText"
             android:layout_height="45dp"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:text="BottomSheetDialog"/>
 
     <TextView
             android:id="@+id/dialogs"
             style="@style/CommonText"
+            android:background="?android:attr/selectableItemBackground"
             android:layout_height="45dp"
             android:gravity="center_vertical"
             android:text="Dialogs"/>

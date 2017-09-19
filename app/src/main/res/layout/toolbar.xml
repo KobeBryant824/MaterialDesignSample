@@ -5,6 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
+        android:navigationIcon="@mipmap/ic_launcher"
         android:theme="@style/AppTheme.AppBarOverlay">
 
 </android.support.v7.widget.Toolbar>

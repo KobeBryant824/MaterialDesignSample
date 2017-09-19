@@ -19,6 +19,7 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
             ((AppCompatActivity) activity).setSupportActionBar(toolbar);
             if (((AppCompatActivity) activity).getSupportActionBar() != null)
                 ((AppCompatActivity) activity).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         }
     }
 

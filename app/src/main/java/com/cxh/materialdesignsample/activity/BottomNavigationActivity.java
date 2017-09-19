@@ -24,7 +24,7 @@ public class BottomNavigationActivity extends BaseActivity {
                 case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.title_dashboard);
                     return true;
-                case R.id.navigation_notifications:
+                case R.id.navigation_notifications1:
                     mTextMessage.setText(R.string.title_notifications);
                     return true;
             }

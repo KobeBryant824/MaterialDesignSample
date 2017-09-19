@@ -12,18 +12,17 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.Toolbar;
 import android.transition.Fade;
 import android.transition.Slide;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.cxh.materialdesignsample.Constants;
 import com.cxh.materialdesignsample.R;
-import com.socks.library.KLog;
 
 import static com.cxh.materialdesignsample.adapter.HomeAdapter.path1;
 import static com.cxh.materialdesignsample.adapter.HomeAdapter.path2;
