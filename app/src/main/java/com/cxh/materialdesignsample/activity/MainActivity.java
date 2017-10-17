@@ -24,7 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
-import com.cxh.materialdesignsample.Constants;
+import com.cxh.materialdesignsample.Constant;
 import com.cxh.materialdesignsample.R;
 import com.cxh.materialdesignsample.fragment.BehaviorFragment;
 import com.cxh.materialdesignsample.fragment.MainFragment;
@@ -177,8 +177,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             SharedPreferences sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
             SharedPreferences.Editor edit = sharedPreferences.edit();
 
-            boolean isNight = !sharedPreferences.getBoolean(Constants.ISNIGHT, false);
-            edit.putBoolean(Constants.ISNIGHT, isNight).commit();
+            boolean isNight = !sharedPreferences.getBoolean(Constant.ISNIGHT, false);
+            edit.putBoolean(Constant.ISNIGHT, isNight).commit();
 
             if (isNight)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);

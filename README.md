@@ -1,6 +1,6 @@
 
-## Widget
-- DrawerLayout+NavigationView 抽屉菜单
+## Widget ##
+- DrawerLayout + NavigationView 抽屉菜单
 - BottomNavigationView 底部菜单
 
 - Constraint-layout 约束布局
@@ -8,7 +8,7 @@
 
 - AppBarLayout 定制你的“顶部栏”应该执行哪些动作的滑动 Layout
 - CoordinatorLayout 处理手势, 以及滚动的超级 FrameLayout
-- CoordinatorLayout.Behavior 
+- CoordinatorLayout.Behavior  行为
 - CollapsingToolbarLayout 可伸缩折叠的 Toolbar
 - NestedScrollView 配合 CoordinatorLayout 使用
 
@@ -21,12 +21,12 @@
 
 - SwipeRefreshLayout 下拉刷新
 - RecyclerView 复杂列表
-- CardView 卡片布局
+- CardView 卡片
 - TextInputLayout 带提示的 MD 风格的 EditText
 
-- Transition 进场出场动画
+- Transition 转场动画
 - ActivityOptionsCompat 共享元素
-- Shortcut android7.1 3DTouch 菜单
+- Shortcut 3DTouch 菜单
 - DayNight 白天黑夜换肤
 - AccessibilityService 辅助功能
 

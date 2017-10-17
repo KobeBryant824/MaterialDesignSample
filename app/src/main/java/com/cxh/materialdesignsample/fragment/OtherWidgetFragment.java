@@ -23,6 +23,7 @@ import com.cxh.materialdesignsample.R;
 import com.cxh.materialdesignsample.activity.BottomNavigationActivity;
 import com.cxh.materialdesignsample.activity.BottomSheetDialogView;
 import com.cxh.materialdesignsample.activity.ConstraintLayoutActivity;
+import com.cxh.materialdesignsample.activity.EmojiActivity;
 import com.cxh.materialdesignsample.activity.FlexboxLayoutActivity;
 import com.cxh.materialdesignsample.activity.MainActivity;
 
@@ -53,6 +54,13 @@ public class OtherWidgetFragment extends Fragment {
         checkBox = view.findViewById(R.id.checkbox);
         radiobutton = view.findViewById(R.id.radiobutton);
         seekBar = view.findViewById(R.id.seekBar);
+
+        view.findViewById(R.id.emoji).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), EmojiActivity.class));
+            }
+        });
 
         view.findViewById(R.id.bottomNavigation).setOnClickListener(new View.OnClickListener() {
             @Override

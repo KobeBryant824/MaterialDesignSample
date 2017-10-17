@@ -16,12 +16,12 @@
             app:theme="@style/AppTheme.AppBarOverlay"/>
 
     <TextView
-            android:id="@+id/constraintLayout"
-            style="@style/CommonText"
-            android:layout_height="45dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:text="ConstraintLayout"/>
+        android:id="@+id/constraintLayout"
+        style="@style/CommonText"
+        android:layout_height="45dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:text="ConstraintLayout"/>
 
     <TextView
             android:id="@+id/bottomNavigation"
@@ -131,4 +131,11 @@
         android:gravity="center_vertical"
         android:text="FlexboxLayout"/>
 
+    <TextView
+        android:id="@+id/emoji"
+        style="@style/CommonText"
+        android:layout_height="45dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:text="Emoji"/>
 </LinearLayout>

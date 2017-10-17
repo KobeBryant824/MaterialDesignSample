@@ -12,7 +12,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.Toolbar;
 import android.transition.Fade;
 import android.transition.Slide;
 import android.view.Gravity;
@@ -21,7 +20,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.cxh.materialdesignsample.Constants;
+import com.cxh.materialdesignsample.Constant;
 import com.cxh.materialdesignsample.R;
 
 import static com.cxh.materialdesignsample.adapter.HomeAdapter.path1;
@@ -64,8 +63,8 @@ public class DetailActivity extends BaseActivity {
         int position = this.getIntent().getIntExtra("position", 0);
         final ImageView backdrop = (ImageView) findViewById(R.id.backdrop);
         //设置过渡动画，或者XML android:transitionName=""
-//        ViewCompat.setTransitionName(titleTv, Constants.TRANSITION_TITLE);
-        ViewCompat.setTransitionName(backdrop, Constants.TRANSITION_PIC);
+//        ViewCompat.setTransitionName(titleTv, Constant.TRANSITION_TITLE);
+        ViewCompat.setTransitionName(backdrop, Constant.TRANSITION_PIC);
 
         if (position % 2 == 0) {
             Glide.with(this).load(path1).into(backdrop);
@@ -125,7 +124,7 @@ public class DetailActivity extends BaseActivity {
         intent.putExtra("title", title);
         intent.putExtra("position", position);
         ActivityOptionsCompat options = ActivityOptionsCompat
-                .makeSceneTransitionAnimation(activity, showImage, Constants.TRANSITION_PIC);
+                .makeSceneTransitionAnimation(activity, showImage, Constant.TRANSITION_PIC);
         ActivityCompat.startActivity(activity, intent, options.toBundle());
 
 
@@ -135,8 +134,8 @@ public class DetailActivity extends BaseActivity {
 //                intent.putExtra("title", title);
 //                intent.putExtra("position", position);
 //
-//                Pair<View, String> pair1 = new Pair<>((View)holder.title, Constants.TRANSITION_TITLE);
-//                Pair<View, String> pair2 = new Pair<>((View)holder.showImage, Constants.TRANSITION_PIC);
+//                Pair<View, String> pair1 = new Pair<>((View)holder.title, Constant.TRANSITION_TITLE);
+//                Pair<View, String> pair2 = new Pair<>((View)holder.showImage, Constant.TRANSITION_PIC);
 //                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity, pair1, pair2);
 //
 //                ActivityCompat.startActivity(mActivity, intent, activityOptionsCompat.toBundle());
