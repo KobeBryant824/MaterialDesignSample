@@ -20,19 +20,18 @@ import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
 import android.transition.Slide;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.cxh.materialdesignsample.Constants;
 import com.cxh.materialdesignsample.R;
-import com.cxh.materialdesignsample.service.SendMsgService;
 import com.cxh.materialdesignsample.fragment.BehaviorFragment;
 import com.cxh.materialdesignsample.fragment.MainFragment;
 import com.cxh.materialdesignsample.fragment.OtherWidgetFragment;
 import com.cxh.materialdesignsample.fragment.PaletteFragment;
 import com.cxh.materialdesignsample.fragment.PercentFragment;
+import com.cxh.materialdesignsample.service.SendMsgService;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -110,7 +109,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private void setExitTransition() {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Slide visibility = new Slide(Gravity.LEFT);
-            visibility.setDuration(500);
+            visibility.setDuration(200);
             visibility.setInterpolator(new AccelerateDecelerateInterpolator());
             getWindow().setExitTransition(visibility);
         }
@@ -122,7 +121,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private void setReenterTransition() {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Explode visibility = new Explode(); // 爆裂效果
-            visibility.setDuration(500);
+            visibility.setDuration(200);
             visibility.setInterpolator(new AccelerateDecelerateInterpolator());
             getWindow().setReenterTransition(visibility);
         }

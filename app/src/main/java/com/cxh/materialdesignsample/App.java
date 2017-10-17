@@ -20,5 +20,6 @@ public class App extends Application {
         }
 
         registerActivityLifecycleCallbacks(new ActivityLifecycle());
+
     }
 }

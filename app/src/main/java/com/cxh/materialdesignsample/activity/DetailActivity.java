@@ -68,10 +68,10 @@ public class DetailActivity extends BaseActivity {
         ViewCompat.setTransitionName(backdrop, Constants.TRANSITION_PIC);
 
         if (position % 2 == 0) {
-            Glide.with(this).load(path1).crossFade().into(backdrop);
+            Glide.with(this).load(path1).into(backdrop);
 
         } else {
-            Glide.with(this).load(path2).crossFade().into(backdrop);
+            Glide.with(this).load(path2).into(backdrop);
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -98,7 +98,7 @@ public class DetailActivity extends BaseActivity {
             Fade visibility = new Fade();
             // This view will not be affected by enter transition animation
             visibility.excludeTarget(R.id.fab, true);
-            visibility.setDuration(500);
+            visibility.setDuration(200);
             visibility.setInterpolator(new AccelerateDecelerateInterpolator());
             getWindow().setEnterTransition(visibility);
         }
@@ -110,7 +110,7 @@ public class DetailActivity extends BaseActivity {
     private void setReturnTransition() {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Slide visibility = new Slide(Gravity.RIGHT);
-            visibility.setDuration(500);
+            visibility.setDuration(200);
             visibility.setInterpolator(new AccelerateDecelerateInterpolator());
             getWindow().setReturnTransition(visibility);
         }

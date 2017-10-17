@@ -18,7 +18,8 @@ import com.cxh.materialdesignsample.activity.SwipeDismissBehaviorActivity;
 import com.cxh.materialdesignsample.activity.ZhihuActivity;
 
 /**
- * Created by Hai (haigod7@gmail.com) on 2017/4/10 14:34.
+ * @author a-Hai (haigod7[at]gmail[dot]com)
+ *         2017/4/10 14:34
  */
 public class BehaviorFragment extends Fragment implements View.OnClickListener {
     private Toolbar mToolbar;

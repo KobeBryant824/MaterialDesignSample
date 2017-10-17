@@ -16,12 +16,20 @@
             app:theme="@style/AppTheme.AppBarOverlay"/>
 
     <TextView
+            android:id="@+id/constraintLayout"
+            style="@style/CommonText"
+            android:layout_height="45dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:text="ConstraintLayout"/>
+
+    <TextView
             android:id="@+id/bottomNavigation"
             style="@style/CommonText"
             android:layout_height="45dp"
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
-            android:text="Bottom navigation"/>
+            android:text="BottomNavigation"/>
 
     <TextView
             android:id="@+id/snackbars"

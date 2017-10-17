@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.cxh.materialdesignsample.R;
 import com.cxh.materialdesignsample.activity.BottomNavigationActivity;
 import com.cxh.materialdesignsample.activity.BottomSheetDialogView;
+import com.cxh.materialdesignsample.activity.ConstraintLayoutActivity;
 import com.cxh.materialdesignsample.activity.FlexboxLayoutActivity;
 import com.cxh.materialdesignsample.activity.MainActivity;
 
@@ -43,15 +44,15 @@ public class OtherWidgetFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        mToolbar = view.findViewById(R.id.toolbar);
         mToolbar.setTitle("其他组件");
         ((MainActivity) getActivity()).initDrawer(mToolbar);
 
         parentLayout = view.findViewById(R.id.parentLayout);
-        switchCompat = (SwitchCompat) view.findViewById(R.id.switchCompat);
-        checkBox = (CheckBox) view.findViewById(R.id.checkbox);
-        radiobutton = (RadioButton) view.findViewById(R.id.radiobutton);
-        seekBar = (SeekBar) view.findViewById(R.id.seekBar);
+        switchCompat = view.findViewById(R.id.switchCompat);
+        checkBox = view.findViewById(R.id.checkbox);
+        radiobutton = view.findViewById(R.id.radiobutton);
+        seekBar = view.findViewById(R.id.seekBar);
 
         view.findViewById(R.id.bottomNavigation).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +71,13 @@ public class OtherWidgetFragment extends Fragment {
                                 Toast.makeText(getContext(), "Hello", Toast.LENGTH_SHORT).show();
                             }
                         }).show();
+            }
+        });
+
+        view.findViewById(R.id.constraintLayout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), ConstraintLayoutActivity.class));
             }
         });
 

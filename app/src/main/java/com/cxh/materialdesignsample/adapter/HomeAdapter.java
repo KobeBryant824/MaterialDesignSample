@@ -29,9 +29,9 @@ public class HomeAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
         final ImageView showImage = helper.getView(R.id.showImage);
 
         if (helper.getAdapterPosition() % 2 == 0) {
-            Glide.with(showImage.getContext()).load(path1).centerCrop().into(showImage);
+            Glide.with(showImage.getContext()).load(path1).into(showImage);
         } else {
-            Glide.with(showImage.getContext()).load(path2).centerCrop().into(showImage);
+            Glide.with(showImage.getContext()).load(path2).into(showImage);
         }
     }
 }

@@ -27,11 +27,13 @@ import android.view.View;
 import java.util.List;
 
 /**
+ * 这个包下的类都是25.3.1以下的copy的
  * Created by YOLANDA on 2016/8/14.
  */
 public class BasicBehavior<T extends View> extends CoordinatorLayout.Behavior<T> {
 
     // 源码讲解：http://blog.csdn.net/yanzhenjie1003/article/details/52205665
+
 
     private ListenerAnimatorEndBuild listenerAnimatorEndBuild;
 

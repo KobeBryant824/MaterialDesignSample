@@ -44,6 +44,7 @@
         <activity android:name=".activity.DefineBehaviorActivity"/>
         <activity android:name=".activity.BottomNavigationActivity"/>
         <activity android:name=".activity.FlexboxLayoutActivity"/>
+        <activity android:name=".activity.ConstraintLayoutActivity"/>
 
 
         <service android:name="com.cxh.materialdesignsample.service.SendMsgService"/>
