@@ -26,7 +26,6 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.cxh.materialdesignsample.Constant;
 import com.cxh.materialdesignsample.R;
-import com.cxh.materialdesignsample.fragment.BehaviorFragment;
 import com.cxh.materialdesignsample.fragment.MainFragment;
 import com.cxh.materialdesignsample.fragment.OtherWidgetFragment;
 import com.cxh.materialdesignsample.fragment.PaletteFragment;
@@ -170,10 +169,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         } else if (id == R.id.nav_palette) {
             switchContent(new PaletteFragment());
 
-        } else if (id == R.id.nav_behavior) {
-            switchContent(new BehaviorFragment());
-
-        } else if (id == R.id.nav_skin) {
+        }  else if (id == R.id.nav_skin) {
             SharedPreferences sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
             SharedPreferences.Editor edit = sharedPreferences.edit();
 

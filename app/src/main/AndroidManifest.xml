@@ -37,11 +37,7 @@
         <activity
             android:name=".activity.DetailActivity"
             android:theme="@style/AppTheme.TransStatusBar"/>
-        <activity android:name=".activity.BackTopActivity"/>
-        <activity android:name=".activity.ZhihuActivity"/>
         <activity android:name=".activity.BottomSheetBehaviorActivity"/>
-        <activity android:name=".activity.SwipeDismissBehaviorActivity"/>
-        <activity android:name=".activity.DefineBehaviorActivity"/>
         <activity android:name=".activity.BottomNavigationActivity"/>
         <activity android:name=".activity.FlexboxLayoutActivity"/>
         <activity android:name=".activity.ConstraintLayoutActivity"/>

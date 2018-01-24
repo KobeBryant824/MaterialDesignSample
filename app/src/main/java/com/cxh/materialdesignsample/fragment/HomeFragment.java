@@ -34,6 +34,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private boolean isErr;
 
     private HomeAdapter mHomeAdapter;
+    private RecyclerView mRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,15 +50,15 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mHomeAdapter = new HomeAdapter();
         mHomeAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
         mHomeAdapter.isFirstOnly(false);
-        mHomeAdapter.setOnLoadMoreListener(this, recyclerView);
+        mHomeAdapter.setOnLoadMoreListener(this, mRecyclerView);
 
-        recyclerView.setAdapter(mHomeAdapter);
+        mRecyclerView.setAdapter(mHomeAdapter);
         mHomeAdapter.setOnItemClickListener(this);
 
         mSwipeRefreshLayout.setRefreshing(true);
@@ -66,8 +67,6 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     @Override
     public void onRefresh() {
-        mHomeAdapter.setEnableLoadMore(false);
-
         mPage = 1;
 
         mHandler.postDelayed(new Runnable() {
@@ -78,16 +77,18 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 for (int i = start; i < mPage * PAGE_COUNT; i++) {
                     data.add(mTitle + "," + getActivity().getString(R.string.app_name) + i);
                 }
+//                mHomeAdapter.replaceData(data);
                 mHomeAdapter.setNewData(data);
                 mSwipeRefreshLayout.setRefreshing(false);
-                mHomeAdapter.setEnableLoadMore(true);
             }
         }, 1000);
     }
 
+    private int lastVisibleItemPosition;
+
     @Override
     public void onLoadMoreRequested() {
-        mSwipeRefreshLayout.setEnabled(false);
+        lastVisibleItemPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager()).findLastVisibleItemPosition();
 
         int currentCount = mHomeAdapter.getData().size();
 
@@ -107,19 +108,19 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                             }
                             mHomeAdapter.addData(data);
                             mHomeAdapter.loadMoreComplete();
-                            mSwipeRefreshLayout.setEnabled(true);
                         }
                     }, 1000);
                 } else {
                     isErr = true;
                     mHomeAdapter.loadMoreFail();
-                    mSwipeRefreshLayout.setEnabled(true);
                 }
             } else {
                 mHomeAdapter.loadMoreEnd(true);
-                mSwipeRefreshLayout.setEnabled(true);
             }
         }
+
+        mRecyclerView.scrollToPosition(lastVisibleItemPosition);
+
     }
 
     @Override
